@@ -23,4 +23,24 @@ export class UsersService {
 
     return await createUser.save();
   }
+
+  /**
+   * 根据用户名,密码查找
+   * @param username
+   * @param password
+   */
+  async findOneByUsername(
+    username: string,
+    password: string,
+  ): Promise<boolean> {
+    return (await this.UserModel.findOne({ username, password })) !== null;
+  }
+
+  /**
+   * 根据用户名查找
+   * @param username
+   */
+  async hasUser(username: string): Promise<boolean> {
+    return (await this.UserModel.findOne({ username })) !== null;
+  }
 }
